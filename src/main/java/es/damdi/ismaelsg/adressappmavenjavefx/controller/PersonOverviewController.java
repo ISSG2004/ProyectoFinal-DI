@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class PersonOverviewController {
@@ -46,16 +47,14 @@ public class PersonOverviewController {
      */
     @FXML
     private void initialize() {
-        // Initialize the person table with the two columns.
-        firstNameColumn.setCellValueFactory(
-                cellData -> cellData.getValue().firstNameProperty());
-        lastNameColumn.setCellValueFactory(
-                cellData -> cellData.getValue().lastNameProperty());
+        // Configurar las columnas usando PropertyValueFactory
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
-        // Clear person details.
+        // Limpiar detalles de la persona
         showPersonDetails(null);
 
-        // Listen for selection changes and show the person details when changed.
+        // Escuchar cambios en la selección y actualizar detalles
         personTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showPersonDetails(newValue));
     }
