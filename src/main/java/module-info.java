@@ -1,6 +1,8 @@
 module es.damdi.ismaelsg.adressappmavenjavefx {
-    requires javafx.controls;
     requires javafx.fxml;
+    requires org.kordamp.bootstrapfx.core;
+    requires javafx.controls;
+    requires java.prefs;
 
     opens es.damdi.ismaelsg.adressappmavenjavefx to javafx.fxml;
     opens es.damdi.ismaelsg.adressappmavenjavefx.controller;
