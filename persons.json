@@ -1,0 +1,83 @@
+[
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Hans",
+        "lastName": "Muster",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Ruth",
+        "lastName": "Mueller",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Heinz",
+        "lastName": "Kurz",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Cornelia",
+        "lastName": "Meier",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Werner",
+        "lastName": "Meyer",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Lydia",
+        "lastName": "Kunz",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "George",
+        "lastName": "Best",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Stefan",
+        "lastName": "Meier",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "Martin",
+        "lastName": "Mueller",
+        "postalCode": 1234,
+        "street": "some street"
+    }
+]
