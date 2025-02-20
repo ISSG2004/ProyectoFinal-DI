@@ -2,6 +2,7 @@ package es.damdi.ismaelsg.adressappmavenjavefx.controller;
 
 import es.damdi.ismaelsg.adressappmavenjavefx.MainApp;
 import es.damdi.ismaelsg.adressappmavenjavefx.model.Person;
+import es.damdi.ismaelsg.adressappmavenjavefx.util.JsonUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -101,6 +102,7 @@ public class PersonOverviewController {
         boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
         if (okClicked) {
             mainApp.getPersonData().add(tempPerson);
+            JsonUtils.savePersonsToFile(mainApp.getPersonData());
         }
     }
 
@@ -115,6 +117,8 @@ public class PersonOverviewController {
             boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
             if (okClicked) {
                 showPersonDetails(selectedPerson);
+                personTable.setItems(mainApp.getPersonData());
+                JsonUtils.savePersonsToFile(mainApp.getPersonData());
             }
 
         } else {
@@ -140,6 +144,7 @@ public class PersonOverviewController {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             personTable.getItems().remove(selectedIndex);
+            JsonUtils.savePersonsToFile(mainApp.getPersonData());
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);

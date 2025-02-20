@@ -2,6 +2,7 @@ package es.damdi.ismaelsg.adressappmavenjavefx;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.prefs.Preferences;
 
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonEditDialogController;
@@ -18,6 +19,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
+
+import static es.damdi.ismaelsg.adressappmavenjavefx.util.JsonUtils.loadPersonsFromFile;
 
 public class MainApp extends Application {
 
@@ -37,19 +40,22 @@ public class MainApp extends Application {
     }
     // constructor
     public MainApp() {
-        // Add some sample data
-        personData.add(new Person("Hans", "Muster"));
-        personData.add(new Person("Ruth", "Mueller"));
-        personData.add(new Person("Heinz", "Kurz"));
-        personData.add(new Person("Cornelia", "Meier"));
-        personData.add(new Person("Werner", "Meyer"));
-        personData.add(new Person("Lydia", "Kunz"));
-        personData.add(new Person("Anna", "Best"));
-        personData.add(new Person("Stefan", "Meier"));
-        personData.add(new Person("Martin", "Mueller"));
+        List<Person> loadedPersons = loadPersonsFromFile();
+        if (loadedPersons != null) {
+            personData.addAll(loadedPersons);
+        } else {
+            // Fallback en caso de error de carga
+            personData.add(new Person("Hans", "Muster"));
+            personData.add(new Person("Ruth", "Mueller"));
+            personData.add(new Person("Heinz", "Kurz"));
+            personData.add(new Person("Cornelia", "Meier"));
+            personData.add(new Person("Werner", "Meyer"));
+            personData.add(new Person("Lydia", "Kunz"));
+            personData.add(new Person("Anna", "Best"));
+            personData.add(new Person("Stefan", "Meier"));
+            personData.add(new Person("Martin", "Mueller"));
+        }
     }
-
-
     /**
      * Returns the data as an observable list of Persons.
      * @return
@@ -70,7 +76,6 @@ public class MainApp extends Application {
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
-            scene.getStylesheets().add("css/modena_mod.css");
             scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
             primaryStage.setScene(scene);
             this.primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("media/OIP.jpg")));
@@ -151,43 +156,4 @@ public class MainApp extends Application {
             return false;
         }
     }
-    /**
-     * Returns the person file preference, i.e. the file that was last opened.
-     * The preference is read from the OS specific registry. If no such
-     * preference can be found, null is returned.
-     *
-     * @return
-     */
-    public File getPersonFilePath() {
-        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-        String filePath = prefs.get("filePath", null);
-        if (filePath != null) {
-            return new File(filePath);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Sets the file path of the currently loaded file. The path is persisted in
-     * the OS specific registry.
-     *
-     * @param file the file or null to remove the path
-     */
-    public void setPersonFilePath(File file) {
-        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-        if (file != null) {
-            prefs.put("filePath", file.getPath());
-
-            // Update the stage title.
-            primaryStage.setTitle("AddressApp - " + file.getName());
-        } else {
-            prefs.remove("filePath");
-
-            // Update the stage title.
-            primaryStage.setTitle("AddressApp");
-        }
-    }
-
-
 }
