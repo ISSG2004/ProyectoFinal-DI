@@ -57,15 +57,6 @@
         "birthday": 2000,
         "city": "some city",
         "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
-        "firstName": "George",
-        "lastName": "Best",
-        "postalCode": 1234,
-        "street": "some street"
-    },
-    {
-        "birthday": 2000,
-        "city": "some city",
-        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
         "firstName": "Stefan",
         "lastName": "Meier",
         "postalCode": 1234,
@@ -77,6 +68,15 @@
         "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
         "firstName": "Martin",
         "lastName": "Mueller",
+        "postalCode": 1234,
+        "street": "some street"
+    },
+    {
+        "birthday": 2000,
+        "city": "some city",
+        "class": "es.damdi.ismaelsg.adressappmavenjavefx.model.Person",
+        "firstName": "George",
+        "lastName": "aaaaa",
         "postalCode": 1234,
         "street": "some street"
     }

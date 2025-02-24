@@ -7,6 +7,7 @@ import java.util.prefs.Preferences;
 
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonEditDialogController;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonOverviewController;
+import es.damdi.ismaelsg.adressappmavenjavefx.controller.RootLayoutController;
 import es.damdi.ismaelsg.adressappmavenjavefx.model.Person;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -79,6 +80,10 @@ public class MainApp extends Application {
             scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
             primaryStage.setScene(scene);
             this.primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("media/OIP.jpg")));
+            // Give the controller access to the main app.
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,6 +159,50 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+    public File getPersonFilePath() {
+        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+        String filePath = prefs.get("filePath", null);
+        if (filePath != null) {
+            return new File(filePath);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Sets the file path of the currently loaded file. The path is persisted in
+     * the OS specific registry.
+     *
+     * @param file the file or null to remove the path
+     */
+    public void setPersonFilePath(File file) {
+        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+        if (file != null) {
+            prefs.put("filePath", file.getPath());
+
+            // Update the stage title.
+            primaryStage.setTitle("AddressApp - " + file.getName());
+        } else {
+            prefs.remove("filePath");
+
+            // Update the stage title.
+            primaryStage.setTitle("AddressApp");
+        }
+    }
+
+
+
+    public void showLineChart() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/LineChart.fxml"));
+            AnchorPane initCenter = (AnchorPane) loader.load();
+            rootLayout.setCenter(initCenter);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
