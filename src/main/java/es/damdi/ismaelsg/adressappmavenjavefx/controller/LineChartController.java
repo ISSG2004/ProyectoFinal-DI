@@ -25,7 +25,7 @@ public class LineChartController {
         lineChart.setTitle("Stock Monitoring, 2010");
         //defining a series
         XYChart.Series series = new XYChart.Series();
-        series.setName("My portfolio");
+        series.setName("Serie 1");
         //populating the series with data
         series.getData().add(new XYChart.Data(1, 23));
         series.getData().add(new XYChart.Data(2, 14));
@@ -40,7 +40,25 @@ public class LineChartController {
         series.getData().add(new XYChart.Data(11, 29));
         series.getData().add(new XYChart.Data(12, 25));
 
-        Scene scene  = new Scene(lineChart,800,600);
-        lineChart.getData().add(series);
+        // Definir la segunda serie
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("SErie2");
+        series2.getData().add(new XYChart.Data(1, 30));
+        series2.getData().add(new XYChart.Data(2, 18));
+        series2.getData().add(new XYChart.Data(3, 25));
+        series2.getData().add(new XYChart.Data(4, 28));
+        series2.getData().add(new XYChart.Data(5, 40));
+        series2.getData().add(new XYChart.Data(6, 33));
+        series2.getData().add(new XYChart.Data(7, 27));
+        series2.getData().add(new XYChart.Data(8, 50));
+        series2.getData().add(new XYChart.Data(9, 41));
+        series2.getData().add(new XYChart.Data(10, 22));
+        series2.getData().add(new XYChart.Data(11, 34));
+        series2.getData().add(new XYChart.Data(12, 30));
+
+        // Crear la escena y agregar las series
+        Scene scene = new Scene(lineChart, 800, 600);
+        lineChart.getData().addAll(series, series2);
     }
 }
+
