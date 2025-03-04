@@ -27,5 +27,7 @@
 		<level name="Maven: org.apiguardian:apiguardian-api:1.1.2" value="project"/>
 		<level name="Maven: org.junit.jupiter:junit-jupiter-engine:5.10.2" value="project"/>
 		<level name="Maven: org.junit.platform:junit-platform-engine:1.10.2" value="project"/>
+		<level name="Maven: org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0" value="project"/>
+		<level name="Maven: net.sf.flexjson:flexjson:3.3" value="project"/>
 	</levels>
 </component>
