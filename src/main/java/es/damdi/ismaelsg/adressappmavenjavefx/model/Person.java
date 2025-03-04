@@ -2,6 +2,7 @@ package es.damdi.ismaelsg.adressappmavenjavefx.model;
 
 import java.time.LocalDate;
 
+import flexjson.JSON;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -16,80 +17,102 @@ import javafx.beans.property.StringProperty;
  */
 public class Person {
 
-    private String firstName;
-    private String lastName;
-    private String street;
-    private int postalCode;
-    private String city;
-    private int birthday;
+    private final StringProperty firstName;
+    private final StringProperty lastName;
+    private final StringProperty street;
+    private final IntegerProperty postalCode;
+    private final StringProperty city;
+    private final IntegerProperty birthday;
 
-    /**
-     * Constructor por defecto.
-     */
     public Person() {
         this(null, null);
     }
 
-    /**
-     * Constructor con algunos datos iniciales.
-     * @param firstName Nombre de la persona.
-     * @param lastName Apellido de la persona.
-     */
     public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.street = "some street";
-        this.postalCode = 1234;
-        this.city = "some city";
-        this.birthday = 2000;
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+
+        this.street = new SimpleStringProperty("some street");
+        this.postalCode = new SimpleIntegerProperty(1234);
+        this.city = new SimpleStringProperty("some city");
+        this.birthday = new SimpleIntegerProperty(1234);
     }
 
-    // Getters y Setters
+    @JSON
     public String getFirstName() {
-        return firstName;
+        return firstName.get();
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName.set(firstName);
     }
 
+    public StringProperty firstNameProperty() {
+        return firstName;
+    }
+
+    @JSON
     public String getLastName() {
-        return lastName;
+        return lastName.get();
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName.set(lastName);
     }
 
+    public StringProperty lastNameProperty() {
+        return lastName;
+    }
+
+    @JSON
     public String getStreet() {
-        return street;
+        return street.get();
     }
 
     public void setStreet(String street) {
-        this.street = street;
+        this.street.set(street);
     }
 
+    public StringProperty streetProperty() {
+        return street;
+    }
+
+    @JSON
     public int getPostalCode() {
-        return postalCode;
+        return postalCode.get();
     }
 
     public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
+        this.postalCode.set(postalCode);
     }
 
+    public IntegerProperty postalCodeProperty() {
+        return postalCode;
+    }
+
+    @JSON
     public String getCity() {
-        return city;
+        return city.get();
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.city.set(city);
     }
 
+    public StringProperty cityProperty() {
+        return city;
+    }
+
+    @JSON
     public int getBirthday() {
-        return birthday;
+        return birthday.get();
     }
 
     public void setBirthday(int birthday) {
-        this.birthday = birthday;
+        this.birthday.set(birthday);
+    }
+
+    public IntegerProperty birthdayProperty() {
+        return birthday;
     }
 }

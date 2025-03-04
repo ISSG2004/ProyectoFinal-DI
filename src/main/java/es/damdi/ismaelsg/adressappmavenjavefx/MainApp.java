@@ -1,14 +1,18 @@
 package es.damdi.ismaelsg.adressappmavenjavefx;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.prefs.Preferences;
 
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonEditDialogController;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonOverviewController;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.RootLayoutController;
 import es.damdi.ismaelsg.adressappmavenjavefx.model.Person;
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,17 +21,32 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
-import static es.damdi.ismaelsg.adressappmavenjavefx.util.JsonUtils.loadPersonsFromFile;
-
 public class MainApp extends Application {
+
+    public MainApp() {
+        // Add some sample data
+        personData.add(new Person("Hans", "Muster"));
+        personData.add(new Person("Ruth", "Mueller"));
+        personData.add(new Person("Heinz", "Kurz"));
+        personData.add(new Person("Cornelia", "Meier"));
+        personData.add(new Person("Werner", "Meyer"));
+        personData.add(new Person("Lydia", "Kunz"));
+        personData.add(new Person("Anna", "Best"));
+        personData.add(new Person("Stefan", "Meier"));
+        personData.add(new Person("Martin", "Mueller"));
+    }
 
     private Stage primaryStage;
     private BorderPane rootLayout;
 
+    /**
+     * The data as an observable list of Persons.
+     */
     private ObservableList<Person> personData = FXCollections.observableArrayList();
 
     @Override
@@ -35,34 +54,12 @@ public class MainApp extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("AddressApp Ismael Sánchez González");
 
+        // this.primaryStage.getIcons().add(new Image(getClass().getResource("").toExternalForm()));
+
+
         initRootLayout();
 
         showPersonOverview();
-    }
-    // constructor
-    public MainApp() {
-        List<Person> loadedPersons = loadPersonsFromFile();
-        if (loadedPersons != null) {
-            personData.addAll(loadedPersons);
-        } else {
-            // Fallback en caso de error de carga
-            personData.add(new Person("Hans", "Muster"));
-            personData.add(new Person("Ruth", "Mueller"));
-            personData.add(new Person("Heinz", "Kurz"));
-            personData.add(new Person("Cornelia", "Meier"));
-            personData.add(new Person("Werner", "Meyer"));
-            personData.add(new Person("Lydia", "Kunz"));
-            personData.add(new Person("Anna", "Best"));
-            personData.add(new Person("Stefan", "Meier"));
-            personData.add(new Person("Martin", "Mueller"));
-        }
-    }
-    /**
-     * Returns the data as an observable list of Persons.
-     * @return
-     */
-    public ObservableList<Person> getPersonData() {
-        return personData;
     }
 
     /**
@@ -75,21 +72,24 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-            primaryStage.setScene(scene);
-            this.primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("media/OIP.jpg")));
-            // Give the controller access to the main app.
             RootLayoutController controller = loader.getController();
             controller.setMainApp(this);
 
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+
+            // scene.getStylesheets().add("css/modena_mod.css");
+            scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+            primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Shows the person overview inside the root layout.
+     */
     /**
      * Shows the person overview inside the root layout.
      */
@@ -106,6 +106,7 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             PersonOverviewController controller = loader.getController();
             controller.setMainApp(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -118,11 +119,6 @@ public class MainApp extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 
     /**
      * Opens a dialog to edit details for the specified person. If the user
@@ -145,6 +141,8 @@ public class MainApp extends Application {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
+            //scene.getStylesheets().add("./css/modena_mod.css");
+            scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
@@ -161,6 +159,24 @@ public class MainApp extends Application {
             return false;
         }
     }
+
+
+
+    public ObservableList<Person> getPersonData() {
+        return personData;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    /**
+     * Returns the person file preference, i.e. the file that was last opened.
+     * The preference is read from the OS specific registry. If no such
+     * preference can be found, null is returned.
+     *
+     * @return
+     */
     public File getPersonFilePath() {
         Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
         String filePath = prefs.get("filePath", null);
@@ -192,17 +208,87 @@ public class MainApp extends Application {
         }
     }
 
+    public void savePersonDataToFile(File file) {
+        JSONSerializer serializer = new JSONSerializer();
 
+        // Convertimos personData en una lista de objetos simples
+        List<Map<String, Object>> simplePersonList = new ArrayList<>();
+        for (Person p : personData) {
+            Map<String, Object> personMap = new HashMap<>();
+            personMap.put("firstName", p.getFirstName());
+            personMap.put("lastName", p.getLastName());
+            personMap.put("street", p.getStreet());
+            personMap.put("postalCode", p.getPostalCode());
+            personMap.put("city", p.getCity());
+            personMap.put("birthday", p.getBirthday());
+            simplePersonList.add(personMap);
+        }
 
-    public void showLineChart() {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/LineChart.fxml"));
-            AnchorPane initCenter = (AnchorPane) loader.load();
-            rootLayout.setCenter(initCenter);
+        try (FileWriter writer = new FileWriter(file)) {
+            String json = serializer.exclude("*.class").serialize(simplePersonList);
+            writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void loadPersonDataFromFile(File file) {
+        JSONDeserializer<List<Map<String, Object>>> deserializer = new JSONDeserializer<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            List<Map<String, Object>> loadedPersons = deserializer.deserialize(reader);
+
+            personData.clear();
+            for (Map<String, Object> personMap : loadedPersons) {
+                Person p = new Person();
+                p.setFirstName((String) personMap.get("firstName"));
+                p.setLastName((String) personMap.get("lastName"));
+                p.setStreet((String) personMap.get("street"));
+                p.setPostalCode(((Number) personMap.get("postalCode")).intValue());
+                p.setCity((String) personMap.get("city"));
+                p.setBirthday(((Number) personMap.get("birthday")).intValue());
+                personData.add(p);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void handleSaveAs() {
+        FileChooser fileChooser = new FileChooser();
+
+        // Configura la extensión del archivo
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "Archivos JSON (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Muestra el diálogo de guardar archivo
+        File file = fileChooser.showSaveDialog(primaryStage);
+
+        if (file != null) {
+            // Asegura que el archivo tenga la extensión correcta
+            if (!file.getPath().endsWith(".json")) {
+                file = new File(file.getPath() + ".json");
+            }
+            savePersonDataToFile(file);
+        }
+    }
+
+    public void handleOpen() {
+        FileChooser fileChooser = new FileChooser();
+
+        // Configura la extensión del archivo
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "Archivos JSON (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Muestra el diálogo de abrir archivo
+        File file = fileChooser.showOpenDialog(primaryStage);
+
+        if (file != null) {
+            loadPersonDataFromFile(file);
+        }
+    }
+
+
+
 }

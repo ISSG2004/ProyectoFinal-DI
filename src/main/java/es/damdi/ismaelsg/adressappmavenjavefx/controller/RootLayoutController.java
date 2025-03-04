@@ -3,7 +3,6 @@ package es.damdi.ismaelsg.adressappmavenjavefx.controller;
 
 import es.damdi.ismaelsg.adressappmavenjavefx.MainApp;
 import es.damdi.ismaelsg.adressappmavenjavefx.model.Person;
-import es.damdi.ismaelsg.adressappmavenjavefx.util.JsonUtils;
 
 import java.io.File;
 import java.util.List;
@@ -13,101 +12,112 @@ import javafx.stage.FileChooser;
 
 public class RootLayoutController {
 
-    // Referencia a la aplicación principal
+    // Reference to the main application
     private MainApp mainApp;
 
     /**
-     * Es llamado por la aplicación principal para proporcionar una referencia a sí misma.
+     * Is called by the main application to give a reference back to itself.
+     *
+     * @param mainApp
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
     /**
-     * Crea un nuevo libro de direcciones vacío.
+     * Creates an empty address book.
      */
     @FXML
     private void handleNew() {
-        mainApp.getPersonData().clear();
-        mainApp.setPersonFilePath(null);
-    }
-
-    /**
-     * Abre un FileChooser para que el usuario seleccione un archivo JSON para cargar.
-     */
-    @FXML
-    private void handleOpen() {
-        FileChooser fileChooser = new FileChooser();
-
-        // Establecer filtro de extensión
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "JSON files (*.json)", "*.json");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        // Mostrar diálogo de apertura de archivo
-        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
-
-        if (file != null) {
-            List<Person> persons = JsonUtils.loadPersonsFromFile(file);
-            if (persons != null) {
-                mainApp.setPersonData(persons);
-                mainApp.setPersonFilePath(file);
-            }
+        if (mainApp != null) {
+            mainApp.getPersonData().clear();
+            mainApp.setPersonFilePath(null);
         }
     }
 
     /**
-     * Guarda el archivo en la ubicación actual. Si no hay un archivo abierto, muestra "Guardar como".
+     * Opens a FileChooser to let the user select an address book to load.
+     */
+    @FXML
+    private void handleOpen() {
+        if (mainApp == null) {
+            System.err.println("MainApp is not initialized.");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "JSON files (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show open file dialog
+        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+
+        if (file != null) {
+            mainApp.loadPersonDataFromFile(file);
+        }
+    }
+
+    /**
+     * Saves the file to the person file that is currently open. If there is no
+     * open file, the "save as" dialog is shown.
      */
     @FXML
     private void handleSave() {
+        if (mainApp == null) {
+            System.err.println("MainApp is not initialized.");
+            return;
+        }
+
         File personFile = mainApp.getPersonFilePath();
         if (personFile != null) {
-            JsonUtils.savePersonsToFile(mainApp.getPersonData(), personFile);
+            mainApp.savePersonDataToFile(personFile);
         } else {
             handleSaveAs();
         }
     }
 
     /**
-     * Abre un FileChooser para que el usuario seleccione un archivo para guardar.
+     * Opens a FileChooser to let the user select a file to save to.
      */
     @FXML
     private void handleSaveAs() {
+        if (mainApp == null) {
+            System.err.println("MainApp is not initialized.");
+            return;
+        }
+
         FileChooser fileChooser = new FileChooser();
 
-        // Establecer filtro de extensión
+        // Set extension filter
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
                 "JSON files (*.json)", "*.json");
         fileChooser.getExtensionFilters().add(extFilter);
 
-        // Mostrar diálogo de guardado
+        // Show save file dialog
         File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
 
         if (file != null) {
-            // Asegurar que tiene la extensión correcta
+            // Make sure it has the correct extension
             if (!file.getPath().endsWith(".json")) {
                 file = new File(file.getPath() + ".json");
             }
-            JsonUtils.savePersonsToFile(mainApp.getPersonData(), file);
-            mainApp.setPersonFilePath(file);
+            mainApp.savePersonDataToFile(file);
         }
     }
 
     /**
-     * Muestra un diálogo de información sobre la aplicación.
+     * Opens an about dialog.
      */
     @FXML
     private void handleAbout() {
-        Dialogs.create()
-                .title("AddressApp")
-                .masthead("Acerca de")
-                .message("Autor: Marco Jakob\nSitio web: http://code.makery.ch")
-                .showInformation();
+        System.out.println("Author: Marco Jakob\nWebsite: http://code.makery.ch");
     }
 
     /**
-     * Cierra la aplicación.
+     * Closes the application.
      */
     @FXML
     private void handleExit() {
