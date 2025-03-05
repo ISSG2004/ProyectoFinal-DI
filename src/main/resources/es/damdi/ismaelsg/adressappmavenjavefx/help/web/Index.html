@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Manual de usuario</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Agenda de Contactos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#descripcion">Descripción</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tecnologias">Tecnologías Utilizadas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#caracteristicas">Características</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#instalacion">Instalación y Ejecución</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#estructura">Estructura del Proyecto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#autor">Autor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#licencia">Licencia</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <!-- Sección de Descripción -->
+            <div id="descripcion" class="content-section">
+                <h2 class="section-title">Descripción</h2>
+                <p>Este proyecto es una aplicación de agenda de contactos desarrollada en JavaFX. Permite a los usuarios gestionar
+                    sus contactos de manera eficiente con una interfaz gráfica moderna y almacenamiento persistente mediante archivos JSON.</p>
+            </div>
+        
+            <!-- Sección de Tecnologías Utilizadas -->
+            <div id="tecnologias" class="content-section">
+                <h2 class="section-title">Tecnologías Utilizadas</h2>
+                <ul>
+                    <li><strong>JavaFX</strong>: Para la interfaz gráfica.</li>
+                    <li><strong>BootstrapFX</strong>: Para mejorar el diseño de la interfaz.</li>
+                    <li><strong>FlexJSON</strong>: Para la serialización y deserialización de los datos en formato JSON.</li>
+                </ul>
+            </div>
+        
+            <!-- Sección de Características -->
+            <div id="caracteristicas" class="content-section">
+                <h2 class="section-title">Características</h2>
+                <ul>
+                    <li>Agregar, editar y eliminar contactos.</li>
+                    <li>Guardar y cargar datos de contactos desde un archivo JSON.</li>
+                    <li>Interfaz gráfica estilizada con BootstrapFX.</li>
+                </ul>
+            </div>
+        
+            <!-- Sección de Instalación y Ejecución -->
+            <div id="instalacion" class="content-section">
+                <h2 class="section-title">Instalación y Ejecución</h2>
+                <h4>Clonar el repositorio</h4>
+                <pre><code>git clone https://github.com/ISSG2004/ProyectoFinal-DI.git</code></pre>
+                <h4>Compilar y ejecutar con Maven</h4>
+                <pre><code>mvn clean javafx:run</code></pre>
+            </div>
+        
+            <!-- Sección de Estructura del Proyecto -->
+            <div id="estructura" class="content-section">
+                <h2 class="section-title">Estructura del Proyecto</h2>
+                <pre><code>📂 agenda-contactos
+        ├── 📂 src
+        │   ├── 📂 main
+        │   │   ├── 📂 java
+        │   │   │   ├── 📂 controllers
+        │   │   │   ├── 📂 models
+        │   │   ├── 📂 resources
+        |   |   |   ├── 📂 views
+        |   |   |   ├── 📂 media
+        |   |   |   ├── 📂 help
+        ├── pom.xml</code></pre>
+            </div>
+        
+            <!-- Sección de Autor -->
+            <div id="autor" class="content-section">
+                <h2 class="section-title">Autor</h2>
+                <p>Ismael Sánchez González</p>
+            </div>
+        
+            <!-- Sección de Licencia -->
+            <div id="licencia" class="content-section">
+                <h2 class="section-title">Licencia</h2>
+                <p>Este proyecto está bajo la licencia MIT.</p>
+            </div>
+        
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

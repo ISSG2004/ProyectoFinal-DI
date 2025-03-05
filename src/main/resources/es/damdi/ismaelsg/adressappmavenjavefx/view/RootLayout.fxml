@@ -3,9 +3,9 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 
-<?import javafx.scene.input.KeyCodeCombination?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/bootstrapfx.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.damdi.ismaelsg.adressappmavenjavefx.controller.RootLayoutController">
    <top>
      <MenuBar BorderPane.alignment="CENTER">
@@ -39,9 +39,20 @@
              <MenuItem mnemonicParsing="false" text="Delete" />
            </items>
          </Menu>
+            <Menu mnemonicParsing="false" text="Charts">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Pie Chart" onAction="#showPieChart" />
+                  <MenuItem mnemonicParsing="false" text="StackedAreaChart" onAction="#showStackedAreaChart"/>
+                  <MenuItem mnemonicParsing="false" text="Bar Chart" onAction="#showBarChart"/>
+                  <MenuItem mnemonicParsing="false" text="Line Chart" onAction="#showLineChart"/>
+              </items>
+            </Menu>
          <Menu mnemonicParsing="false" text="Help">
            <items>
-             <MenuItem mnemonicParsing="false" text="About" />
+             <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
+                  <MenuItem mnemonicParsing="false" text="Documentación técnica" />
+                  <MenuItem mnemonicParsing="false" text="Manual de usuario" />
+                  <MenuItem mnemonicParsing="false" text="Guía rápida" />
            </items>
          </Menu>
        </menus>
