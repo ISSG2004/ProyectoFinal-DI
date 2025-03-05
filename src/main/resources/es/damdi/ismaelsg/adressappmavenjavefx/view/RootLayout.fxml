@@ -50,9 +50,9 @@
          <Menu mnemonicParsing="false" text="Help">
            <items>
              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
-                  <MenuItem mnemonicParsing="false" text="Documentación técnica" />
-                  <MenuItem mnemonicParsing="false" text="Manual de usuario" />
-                  <MenuItem mnemonicParsing="false" text="Guía rápida" />
+                  <MenuItem mnemonicParsing="false" text="Documentación técnica" onAction="#handleDoc" />
+                  <MenuItem mnemonicParsing="false" text="Manual de usuario" onAction="#handleWeb"/>
+                  <MenuItem mnemonicParsing="false" text="Guía rápida" onAction="#handleLoadPdf"/>
            </items>
          </Menu>
        </menus>

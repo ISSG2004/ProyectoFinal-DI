@@ -318,7 +318,7 @@ public class RootLayoutController {
     private void showBarChart() {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Bar Chart - Tu Nombre");
+        stage.setTitle("Bar Chart - Ismael Sánchez González");
 
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
