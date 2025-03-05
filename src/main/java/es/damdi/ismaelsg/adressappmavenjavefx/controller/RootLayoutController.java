@@ -6,6 +6,7 @@ import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
 import es.damdi.ismaelsg.adressappmavenjavefx.MainApp;
+import es.damdi.ismaelsg.adressappmavenjavefx.charts.GenerationsChart;
 import es.damdi.ismaelsg.adressappmavenjavefx.model.Person;
 
 import java.io.File;
@@ -128,46 +129,7 @@ public class RootLayoutController {
 
     @FXML
     public void handleWeb() {
-        // Crear un componente WebView para mostrar el contenido del HTML local
-        WebView webView = new WebView();
-
-        try {
-            // Obtener el archivo HTML local
-            // Aquí asumimos que el archivo está en el directorio "resources/help/html" dentro del proyecto
-            File file = new File("src/main/resources/help/web/index.html");
-
-            if (file.exists()) {
-                // Convertir el archivo a una URL
-                URI uri = file.toURI();
-                URL url = uri.toURL();
-
-                // Cargar el archivo HTML en el WebView
-                webView.getEngine().load(url.toExternalForm());
-            } else {
-                // Si el archivo no existe, mostrar un error
-                System.err.println("⚠️ No se encontró el archivo HTML.");
-                webView.getEngine().loadContent("<html><body><h2>Error: No se pudo cargar el archivo HTML.</h2></body></html>");
-            }
-        } catch (Exception e) {
-            // Manejo de excepciones
-            System.err.println("⚠️ Ocurrió un error al cargar el archivo HTML: " + e.getMessage());
-            webView.getEngine().loadContent("<html><body><h2>Error: No se pudo cargar el archivo HTML.</h2></body></html>");
-        }
-
-        // Crear un nuevo Stage para la ventana de ayuda no modal
-        Stage webViewStage = new Stage();
-        webViewStage.setTitle("Archivo HTML");
-        webViewStage.setWidth(800);
-        webViewStage.setHeight(600);
-
-        // Crear una escena con el WebView
-        Scene scene = new Scene(webView, 800, 600);
-
-        // Asignar la escena al nuevo Stage
-        webViewStage.setScene(scene);
-
-        // Mostrar la ventana no modal
-        webViewStage.show();
+        mainApp.showWeb();
     }
 
 
@@ -194,58 +156,10 @@ public class RootLayoutController {
      */
     @FXML
     private void handleDoc() {
-        // Crear una ventana emergente (Stage) para mostrar la documentación
-        Stage ventanaEmergente = new Stage();
-        ventanaEmergente.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana principal hasta cerrar esta
-        ventanaEmergente.setTitle("Documentación Técnica");
-
-        // Cargar el contenido del archivo Markdown
-        String markdownContent = loadMarkdown();
-
-        // Convertir Markdown a HTML utilizando Flexmark
-        Parser parser = Parser.builder().build();
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
-        Node document = parser.parse(markdownContent);
-        String htmlContent = renderer.render(document);
-
-        // Crear un WebView para mostrar el contenido HTML generado
-        WebView webView = new WebView();
-        webView.getEngine().loadContent(htmlContent);
-
-        // Configurar el layout y la escena para la ventana emergente
-        VBox layout = new VBox(webView);
-        layout.setStyle("-fx-padding: 10; -fx-alignment: center;");
-        Scene scene = new Scene(layout, 800, 600);
-
-        ventanaEmergente.setScene(scene);
-        ventanaEmergente.showAndWait();
+        mainApp.showMarkdown();
     }
 
-    /**
-     * Método para cargar el contenido del archivo Markdown desde los recursos del classpath.
-     *
-     * @return Contenido del archivo Markdown como String, o un mensaje de error si ocurre un problema.
-     */
-    private String loadMarkdown() {
-        // Obtener la URL del archivo Markdown en recursos
-        URL resourceUrl = getClass().getClassLoader().getResource("help/markdown/README.md");
 
-        if (resourceUrl == null) {
-            System.err.println("⚠️ El archivo README.md no se encontró en el classpath.");
-            return "Error: No se pudo encontrar el archivo Markdown.";
-        } else {
-            System.out.println("Archivo encontrado: " + resourceUrl);
-        }
-
-        try {
-            // Convertir la URL en una ruta válida para leer el archivo
-            Path path = Paths.get(resourceUrl.toURI());
-            return Files.readString(path);
-        } catch (IOException | URISyntaxException e) {
-            System.err.println("❌ Error al cargar el archivo Markdown: " + e.getMessage());
-            return "Error al cargar el archivo Markdown.";
-        }
-    }
 
     /**
      * Método para cargar el pdf
@@ -261,7 +175,7 @@ public class RootLayoutController {
         Scene scene = new Scene(displayer.toNode());
 
         // Obtener la URL del PDF
-        URL pdfUrl = getClass().getResource("help/pdf/practica01.pdf");
+        URL pdfUrl = getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/help/pdf/practica01.pdf");
 
         if (pdfUrl == null) {
             System.err.println("⚠️ El archivo PDF no se encontró en el classpath.");
@@ -357,6 +271,15 @@ public class RootLayoutController {
         stage.setScene(new Scene(lineChart, 600, 400));
         stage.show();
     }
+
+    /**
+     * Cargar chart
+     */
+    @FXML
+    private void showChart() {
+        GenerationsChart.showChartWindow(mainApp.getPersonData());
+    }
+
     /**
      * Closes the application.
      */

@@ -10,6 +10,8 @@ import java.util.prefs.Preferences;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonEditDialogController;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonOverviewController;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.RootLayoutController;
+import es.damdi.ismaelsg.adressappmavenjavefx.documentacion.HelpViewer;
+import es.damdi.ismaelsg.adressappmavenjavefx.documentacion.MarkDown;
 import es.damdi.ismaelsg.adressappmavenjavefx.model.Person;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
@@ -288,7 +290,22 @@ public class MainApp extends Application {
             loadPersonDataFromFile(file);
         }
     }
-
+    public void showMarkdown(){
+        try {
+            MarkDown markdown = new MarkDown();
+            markdown.start(new Stage());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void showWeb(){
+        try {
+            HelpViewer helpViewer = new HelpViewer();
+            helpViewer.start(new Stage());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

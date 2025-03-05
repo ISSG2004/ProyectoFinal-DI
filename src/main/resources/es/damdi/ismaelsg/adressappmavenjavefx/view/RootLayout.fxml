@@ -53,6 +53,7 @@
                   <MenuItem mnemonicParsing="false" text="Documentación técnica" onAction="#handleDoc" />
                   <MenuItem mnemonicParsing="false" text="Manual de usuario" onAction="#handleWeb"/>
                   <MenuItem mnemonicParsing="false" text="Guía rápida" onAction="#handleLoadPdf"/>
+                  <MenuItem mnemonicParsing="false" text="Ejercicio A" onAction="#showChart"/>
            </items>
          </Menu>
        </menus>
