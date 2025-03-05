@@ -41,10 +41,10 @@
          </Menu>
             <Menu mnemonicParsing="false" text="Charts">
               <items>
-                <MenuItem mnemonicParsing="false" text="Pie Chart" onAction="#showPieChart" />
-                  <MenuItem mnemonicParsing="false" text="StackedAreaChart" onAction="#showStackedAreaChart"/>
-                  <MenuItem mnemonicParsing="false" text="Bar Chart" onAction="#showBarChart"/>
-                  <MenuItem mnemonicParsing="false" text="Line Chart" onAction="#showLineChart"/>
+                <MenuItem mnemonicParsing="false" onAction="#showPieChart" text="Pie Chart" />
+                  <MenuItem mnemonicParsing="false" onAction="#showStackedAreaChart" text="StackedAreaChart" />
+                  <MenuItem mnemonicParsing="false" onAction="#showBarChart" text="Bar Chart" />
+                  <MenuItem mnemonicParsing="false" onAction="#showLineChart" text="Line Chart" />
               </items>
             </Menu>
          <Menu mnemonicParsing="false" text="Help">
