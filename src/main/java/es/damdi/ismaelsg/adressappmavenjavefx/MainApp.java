@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.prefs.Preferences;
 
+import es.damdi.ismaelsg.adressappmavenjavefx.charts.DonutTileChart;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonEditDialogController;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.PersonOverviewController;
 import es.damdi.ismaelsg.adressappmavenjavefx.controller.RootLayoutController;
@@ -55,8 +56,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("AddressApp Ismael Sánchez González");
-
-        // this.primaryStage.getIcons().add(new Image(getClass().getResource("").toExternalForm()));
+        this.primaryStage.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
 
 
         initRootLayout();
@@ -306,6 +306,28 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+    public void showDonutChartTile() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/DonutChartTile.fxml"));
+            AnchorPane page = loader.load();
 
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("DonutChart- Generaciones");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            DonutTileChart controller = loader.getController();
+            controller.setMainApp(this);
+
+            dialogStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

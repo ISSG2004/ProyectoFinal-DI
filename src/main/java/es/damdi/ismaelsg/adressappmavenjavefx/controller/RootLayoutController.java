@@ -279,7 +279,14 @@ public class RootLayoutController {
     private void showChart() {
         GenerationsChart.showChartWindow(mainApp.getPersonData());
     }
+    /**
+     * Cargar donut
+     */
 
+    @FXML
+    private void showDonut(){
+        mainApp.showDonutChartTile();
+    }
     /**
      * Closes the application.
      */

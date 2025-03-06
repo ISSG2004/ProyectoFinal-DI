@@ -45,15 +45,17 @@
                   <MenuItem mnemonicParsing="false" onAction="#showStackedAreaChart" text="StackedAreaChart" />
                   <MenuItem mnemonicParsing="false" onAction="#showBarChart" text="Bar Chart" />
                   <MenuItem mnemonicParsing="false" onAction="#showLineChart" text="Line Chart" />
+                  <MenuItem mnemonicParsing="false" onAction="#showChart" text="EjercicioA" />
+                  <MenuItem mnemonicParsing="false" text="EjercicioC"/>
               </items>
             </Menu>
          <Menu mnemonicParsing="false" text="Help">
            <items>
              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
-                  <MenuItem mnemonicParsing="false" text="Documentación técnica" onAction="#handleDoc" />
-                  <MenuItem mnemonicParsing="false" text="Manual de usuario" onAction="#handleWeb"/>
-                  <MenuItem mnemonicParsing="false" text="Guía rápida" onAction="#handleLoadPdf"/>
-                  <MenuItem mnemonicParsing="false" text="Ejercicio A" onAction="#showChart"/>
+                  <MenuItem mnemonicParsing="false" onAction="#handleDoc" text="Documentación técnica" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleWeb" text="Manual de usuario" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLoadPdf" text="Guía rápida" />
+                  <MenuItem mnemonicParsing="false" onAction="#showChart" text="Ejercicio A" />
            </items>
          </Menu>
        </menus>

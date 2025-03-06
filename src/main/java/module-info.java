@@ -5,9 +5,12 @@ module es.damdi.ismaelsg.adressappmavenjavefx {
     requires flexjson;
     requires flexmark;
     requires flexmark.util.ast;
-    requires javafx.web;
     requires PDFViewerFX;
+    requires eu.hansolo.tilesfx;
+    requires jdk.compiler;
+    requires javafx.web;
 
+    opens es.damdi.ismaelsg.adressappmavenjavefx.charts to javafx.fxml;
     opens es.damdi.ismaelsg.adressappmavenjavefx to javafx.fxml;
     opens es.damdi.ismaelsg.adressappmavenjavefx.controller;
     opens es.damdi.ismaelsg.adressappmavenjavefx.model;
