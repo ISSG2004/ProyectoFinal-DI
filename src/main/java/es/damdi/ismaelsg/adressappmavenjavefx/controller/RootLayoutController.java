@@ -125,8 +125,12 @@ public class RootLayoutController {
                 file = new File(file.getPath() + ".json");
             }
             mainApp.savePersonDataToFile(file);
+
+            // Guardar la ruta del archivo en las preferencias
+            mainApp.setPersonFilePath(file);
         }
     }
+
 
     @FXML
     public void handleWeb() {
