@@ -1,6 +1,7 @@
 package es.damdi.ismaelsg.adressappmavenjavefx.controller;
 
 import es.damdi.ismaelsg.adressappmavenjavefx.MainApp;
+import es.damdi.ismaelsg.adressappmavenjavefx.charts.GenerationsChart;
 import es.damdi.ismaelsg.adressappmavenjavefx.model.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -152,6 +153,13 @@ public class PersonOverviewController {
 
             alert.showAndWait();
         }
+    }
+    /**
+     * Cargar chart
+     */
+    @FXML
+    private void showChart() {
+        GenerationsChart.showChartWindow(mainApp.getPersonData());
     }
 
 }

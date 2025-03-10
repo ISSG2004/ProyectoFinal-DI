@@ -75,6 +75,7 @@
                         <Button mnemonicParsing="false" onAction="#handleDeletePerson" styleClass="btn-danger" text="Delete" />
                      </children>
                   </HBox>
+                  <Button layoutX="312.0" layoutY="9.0" mnemonicParsing="false" onAction="#showChart" styleClass="bg-info" text="Generaciones" />
                </children>
             </AnchorPane>
         </items>
