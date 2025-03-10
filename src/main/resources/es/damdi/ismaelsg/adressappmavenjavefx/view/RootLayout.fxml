@@ -46,7 +46,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#showBarChart" text="Bar Chart" />
                   <MenuItem mnemonicParsing="false" onAction="#showLineChart" text="Line Chart" />
                   <MenuItem mnemonicParsing="false" onAction="#showChart" text="EjercicioA" />
-                  <MenuItem mnemonicParsing="false" text="EjercicioC"/>
+                  <MenuItem mnemonicParsing="false" text="EjercicioC" />
               </items>
             </Menu>
          <Menu mnemonicParsing="false" text="Help">

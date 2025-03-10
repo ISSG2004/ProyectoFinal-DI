@@ -5,6 +5,7 @@ import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -31,6 +32,7 @@ public class MarkDown extends Application {
 
         primaryStage.setScene(new Scene(webView, 800, 600));
         primaryStage.setTitle("Ayuda en Markdown");
+        primaryStage.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         primaryStage.show();
     }
 

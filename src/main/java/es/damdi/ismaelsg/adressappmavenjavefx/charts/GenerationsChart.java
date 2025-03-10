@@ -6,6 +6,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -57,7 +58,7 @@ public class GenerationsChart { private static PieChart pieChart;
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Gráfico de Generaciones");
-
+        stage.getIcons().add(new Image(GenerationsChart.class.getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         pieChart = new PieChart();
         pieChart.setTitle("Distribución de Generaciones");
 

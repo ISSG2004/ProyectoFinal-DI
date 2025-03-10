@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import javafx.scene.chart.*;
+import javafx.scene.image.Image;
 import javafx.scene.web.WebView;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -141,6 +142,7 @@ public class RootLayoutController {
         Stage ventanaEmergente = new Stage();
         ventanaEmergente.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana principal hasta cerrar esta
         ventanaEmergente.setTitle("About");
+        ventanaEmergente.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         Label lblNombre = new Label("By: Ismael Sánchez González");
         Label lblProyecto = new Label("Proyecto: AddresApp");
         VBox layout = new VBox(10, lblNombre, lblProyecto);
@@ -169,6 +171,7 @@ public class RootLayoutController {
         // Crear un nuevo Stage (ventana) para el visor PDF
         Stage pdfWindow = new Stage();
         pdfWindow.setTitle("Ayuda - Manual de Usuario");
+        pdfWindow.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
 
         // Crear el visor PDF (suponiendo que PDFDisplayer es la clase correcta)
         PDFDisplayer displayer = new PDFDisplayer();
@@ -202,6 +205,7 @@ public class RootLayoutController {
     private void showPieChart() {
         Stage stage = new Stage();
         stage.setTitle("Pie Chart");
+        stage.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         PieChart pieChart = new PieChart();
         pieChart.getData().addAll(
                 new PieChart.Data("Categoría A", 30),
@@ -215,6 +219,7 @@ public class RootLayoutController {
     private void showStackedAreaChart() {
         Stage stage = new Stage();
         stage.setTitle("Stacked Area Chart");
+        stage.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         StackedAreaChart<String, Number> chart = new StackedAreaChart<>(xAxis, yAxis);
@@ -233,7 +238,7 @@ public class RootLayoutController {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Bar Chart - Ismael Sánchez González");
-
+        stage.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
@@ -257,6 +262,7 @@ public class RootLayoutController {
     private void showLineChart() {
         Stage stage = new Stage();
         stage.setTitle("Line Chart");
+        stage.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
         LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
