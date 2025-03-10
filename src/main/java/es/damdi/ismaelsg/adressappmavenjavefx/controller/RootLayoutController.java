@@ -77,8 +77,12 @@ public class RootLayoutController {
 
         if (file != null) {
             mainApp.loadPersonDataFromFile(file);
+
+            // Guardar la ruta del archivo en las preferencias y actualizar la cabecera
+            mainApp.setPersonFilePath(file);
         }
     }
+
 
     /**
      * Saves the file to the person file that is currently open. If there is no
