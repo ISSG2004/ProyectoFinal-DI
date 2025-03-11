@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"es.damdi.ismaelsg.adressappmavenjavefx","l":"LaunchMain"},{"p":"es.damdi.ismaelsg.adressappmavenjavefx","l":"MainApp"}];updateSearchResults();

@@ -1,0 +1,36 @@
+ACUERDO DE LICENCIA DE USUARIO FINAL (EULA)
+Este Acuerdo de Licencia de Usuario Final (el "Acuerdo") es un contrato legal entre tú (el "Usuario") y [Nombre de tu Empresa/Desarrollador] (el "Licenciante"), con respecto al uso de la aplicación móvil [Nombre de la App] (la "Aplicación"), que el Usuario ha descargado y/o instalado en su dispositivo móvil.
+
+1. Concesión de Licencia
+El Licenciante te otorga una licencia no exclusiva, intransferible, revocable y limitada para usar la Aplicación en tu dispositivo móvil, exclusivamente para tu uso personal y no comercial, sujeto a los términos y condiciones de este Acuerdo.
+
+2. Restricciones de Uso
+El Usuario no podrá:
+
+Copiar, modificar, distribuir, sublicenciar, alquilar, vender o transferir de otra manera la Aplicación o cualquier parte de ella.
+Realizar ingeniería inversa, descompilar o desensamblar la Aplicación, excepto en la medida en que lo permita la ley aplicable.
+Usar la Aplicación para fines ilegales o no autorizados.
+Eludir cualquier mecanismo de seguridad implementado en la Aplicación.
+3. Propiedad Intelectual
+La Aplicación y todo su contenido, incluidos pero no limitados a textos, gráficos, imágenes, logotipos, iconos, software y marcas comerciales, son propiedad del Licenciante y están protegidos por leyes de derechos de autor, marcas comerciales y otras leyes de propiedad intelectual.
+
+4. Actualizaciones y Soporte
+El Licenciante podrá, a su sola discreción, ofrecer actualizaciones, mejoras o correcciones para la Aplicación. Este Acuerdo también se aplicará a esas actualizaciones. El Licenciante no está obligado a proporcionar soporte técnico ni actualizaciones, pero se reserva el derecho de hacerlo.
+
+5. Privacidad
+El uso de la Aplicación está sujeto a la política de privacidad del Licenciante. Al instalar y usar la Aplicación, el Usuario consiente la recopilación y el uso de datos personales según se describe en la política de privacidad.
+
+6. Duración y Terminación
+Este Acuerdo es efectivo hasta que se termine. El Licenciante puede terminar este Acuerdo en cualquier momento si el Usuario incumple los términos del mismo. El Usuario puede terminar este Acuerdo desinstalando la Aplicación y destruyendo todas las copias de la misma.
+
+7. Exclusión de Responsabilidad
+LA APLICACIÓN SE PROPORCIONA "TAL CUAL ES", SIN GARANTÍAS DE NINGÚN TIPO, YA SEA EXPRESA O IMPLÍCITA, INCLUYENDO, PERO NO LIMITADO A, GARANTÍAS DE COMERCIABILIDAD O ADECUACIÓN PARA UN FIN PARTICULAR. EL LICENCIANTE NO SERÁ RESPONSABLE DE NINGÚN DAÑO DIRECTO, INDIRECTO, INCIDENTAL, ESPECIAL, CONSECUENTE O PUNITIVO DERIVADO DEL USO DE LA APLICACIÓN.
+
+8. Indemnización
+El Usuario acuerda indemnizar, defender y eximir de responsabilidad al Licenciante, sus directores, empleados, agentes y representantes de cualquier reclamo, daño, pérdida o gasto, incluidos honorarios razonables de abogados, derivados del uso indebido de la Aplicación por parte del Usuario o de cualquier infracción de este Acuerdo.
+
+9. Ley Aplicable y Resolución de Disputas
+Este Acuerdo se regirá e interpretará de acuerdo con las leyes de [país o estado de jurisdicción], sin tener en cuenta sus disposiciones sobre conflictos de leyes. Cualquier disputa derivada de este Acuerdo se resolverá en los tribunales de [ubicación].
+
+10. Acuerdo Completo
+Este Acuerdo constituye el acuerdo completo entre las partes con respecto al uso de la Aplicación y reemplaza cualquier acuerdo previo, ya sea escrito o verbal.
