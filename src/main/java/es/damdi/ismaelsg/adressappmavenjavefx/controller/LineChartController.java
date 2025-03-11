@@ -7,6 +7,9 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 
+/**
+ * The type Line chart controller.
+ */
 public class LineChartController {
     @FXML
     private Pane paneView;

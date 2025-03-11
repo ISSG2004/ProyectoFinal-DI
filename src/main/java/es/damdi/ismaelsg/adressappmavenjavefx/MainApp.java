@@ -29,8 +29,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
+/**
+ * The type Main app.
+ */
 public class MainApp extends Application {
 
+    /**
+     * Instantiates a new Main app.
+     */
     public MainApp() {
         loadLastSavedPersonData();
     }
@@ -107,7 +113,8 @@ public class MainApp extends Application {
 
     /**
      * Returns the main stage.
-     * @return
+     *
+     * @return primary stage
      */
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -154,11 +161,20 @@ public class MainApp extends Application {
     }
 
 
-
+    /**
+     * Gets person data.
+     *
+     * @return the person data
+     */
     public ObservableList<Person> getPersonData() {
         return personData;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -168,7 +184,7 @@ public class MainApp extends Application {
      * The preference is read from the OS specific registry. If no such
      * preference can be found, null is returned.
      *
-     * @return
+     * @return person file path
      */
     public File getPersonFilePath() {
         Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
@@ -201,6 +217,11 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Save person data to file.
+     *
+     * @param file the file
+     */
     public void savePersonDataToFile(File file) {
         JSONSerializer serializer = new JSONSerializer();
 
@@ -225,6 +246,11 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Load person data from file.
+     *
+     * @param file the file
+     */
     public void loadPersonDataFromFile(File file) {
         JSONDeserializer<List<Map<String, Object>>> deserializer = new JSONDeserializer<>();
 
@@ -246,6 +272,10 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Handle save as.
+     */
     public void handleSaveAs() {
         FileChooser fileChooser = new FileChooser();
 
@@ -266,6 +296,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Handle open.
+     */
     public void handleOpen() {
         FileChooser fileChooser = new FileChooser();
 
@@ -281,6 +314,10 @@ public class MainApp extends Application {
             loadPersonDataFromFile(file);
         }
     }
+
+    /**
+     * Show markdown.
+     */
     public void showMarkdown(){
         try {
             MarkDown markdown = new MarkDown();
@@ -289,6 +326,10 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Show web.
+     */
     public void showWeb(){
         try {
             HelpViewer helpViewer = new HelpViewer();
@@ -297,6 +338,10 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Show donut chart tile.
+     */
     public void showDonutChartTile() {
         try {
             FXMLLoader loader = new FXMLLoader();

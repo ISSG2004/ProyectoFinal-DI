@@ -20,6 +20,9 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 
+/**
+ * The type Help viewer.
+ */
 public class HelpViewer extends Application {
 
     @Override
@@ -76,6 +79,11 @@ public class HelpViewer extends Application {
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

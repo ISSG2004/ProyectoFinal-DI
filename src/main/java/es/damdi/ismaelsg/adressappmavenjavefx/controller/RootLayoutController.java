@@ -31,6 +31,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * The type Root layout controller.
+ */
 public class RootLayoutController {
     // Reference to the main application
     private MainApp mainApp;
@@ -38,7 +41,7 @@ public class RootLayoutController {
     /**
      * Is called by the main application to give a reference back to itself.
      *
-     * @param mainApp
+     * @param mainApp the main app
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -136,6 +139,9 @@ public class RootLayoutController {
     }
 
 
+    /**
+     * Handle web.
+     */
     @FXML
     public void handleWeb() {
         mainApp.showWeb();
@@ -176,35 +182,64 @@ public class RootLayoutController {
      */
     @FXML
     private void handleLoadPdf() {
-        // Crear un nuevo Stage (ventana) para el visor PDF
-        Stage pdfWindow = new Stage();
+        // Crear una nueva ventana para el visor PDF
+        javafx.stage.Stage pdfWindow = new javafx.stage.Stage();
         pdfWindow.setTitle("Ayuda - Manual de Usuario");
-        pdfWindow.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
 
-        // Crear el visor PDF (suponiendo que PDFDisplayer es la clase correcta)
+        // Cargar el icono
+        String iconPath = extractResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg");
+        if (iconPath != null) {
+            pdfWindow.getIcons().add(new javafx.scene.image.Image("file:" + iconPath));
+        }
+
+        // Crear el visor PDF
         PDFDisplayer displayer = new PDFDisplayer();
-        Scene scene = new Scene(displayer.toNode());
+        javafx.scene.Scene scene = new javafx.scene.Scene(displayer.toNode());
 
-        // Obtener la URL del PDF
-        URL pdfUrl = getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/help/pdf/practica01.pdf");
+        // Obtener el PDF como InputStream
+        try (java.io.InputStream inputStream = getClass().getResourceAsStream("/es/damdi/ismaelsg/adressappmavenjavefx/help/pdf/practica01.pdf")) {
+            if (inputStream == null) {
+                System.err.println("⚠️ No se encontró el archivo PDF en el classpath.");
+                return;
+            }
 
-        if (pdfUrl == null) {
-            System.err.println("⚠️ El archivo PDF no se encontró en el classpath.");
-            return;
-        }
+            // Guardar en un archivo temporal
+            java.io.File tempFile = java.io.File.createTempFile("temp_pdf", ".pdf");
+            tempFile.deleteOnExit();
 
-        try {
-            // Convertir la URL en un archivo y cargar el PDF
-            File pdfFile = new File(pdfUrl.toURI());
-            displayer.loadPDF(pdfFile);
-        } catch (URISyntaxException | IOException e) {
+            java.nio.file.Files.copy(inputStream, tempFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+
+            // Intentar cargar el PDF
+            displayer.loadPDF(tempFile); // Asegúrate de que este método acepte un `File`
+
+            // Mostrar la ventana
+            pdfWindow.setScene(scene);
+            pdfWindow.show();
+
+        } catch (Exception e) {
             System.err.println("❌ Error al cargar el PDF: " + e.getMessage());
-            return;
+            e.printStackTrace();
         }
+    }
+    private String extractResource(String resourcePath) {
+        try (java.io.InputStream inputStream = getClass().getResourceAsStream(resourcePath)) {
+            if (inputStream == null) {
+                System.err.println("⚠️ No se encontró el recurso: " + resourcePath);
+                return null;
+            }
 
-        // Configurar la escena y mostrar la ventana
-        pdfWindow.setScene(scene);
-        pdfWindow.show();
+            // Crear un archivo temporal
+            java.io.File tempFile = java.io.File.createTempFile("temp_resource", resourcePath.substring(resourcePath.lastIndexOf(".")));
+            tempFile.deleteOnExit(); // El archivo se eliminará cuando termine la aplicación
+
+            // Copiar el contenido del recurso al archivo temporal
+            java.nio.file.Files.copy(inputStream, tempFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+
+            return tempFile.getAbsolutePath(); // Devuelve la ruta absoluta del archivo temporal
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     /**
     *Gráficos

@@ -43,7 +43,7 @@ public class PersonEditDialogController {
     /**
      * Sets the stage of this dialog.
      *
-     * @param dialogStage
+     * @param dialogStage the dialog stage
      */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -52,7 +52,7 @@ public class PersonEditDialogController {
     /**
      * Sets the person to be edited in the dialog.
      *
-     * @param person
+     * @param person the person
      */
     public void setPerson(Person person) {
         this.person = person;
@@ -68,7 +68,7 @@ public class PersonEditDialogController {
     /**
      * Returns true if the user clicked OK, false otherwise.
      *
-     * @return
+     * @return boolean boolean
      */
     public boolean isOkClicked() {
         return okClicked;

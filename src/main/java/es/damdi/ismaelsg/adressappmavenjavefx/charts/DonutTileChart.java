@@ -9,16 +9,29 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+/**
+ * The type Donut tile chart.
+ */
 public class DonutTileChart {
     @FXML
     private Tile donutChartTile;
     @FXML
     private AnchorPane donutChartPane;
     private MainApp mainApp;
+
+    /**
+     * Set main app.
+     *
+     * @param mainApp the main app
+     */
     public void setMainApp(MainApp mainApp){
         this.mainApp = this.mainApp;
         mostrarDatos();
     }
+
+    /**
+     * Mostrar datos.
+     */
     public void mostrarDatos() {
         int genZ = 0, millennials = 0, genX = 0, boomers = 0;
 
@@ -45,6 +58,12 @@ public class DonutTileChart {
 
         donutChartPane.getChildren().add(donutChartTile);
     }
+
+    /**
+     * Gets donut chart tile.
+     *
+     * @return the donut chart tile
+     */
     public AnchorPane getDonutChartTile() {
         return donutChartPane;
     }

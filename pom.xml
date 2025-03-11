@@ -8,7 +8,8 @@
     <artifactId>adressAppMavenJaveFX</artifactId>
     <version>1.0-RELEASE</version>
     <name>adressAppMavenJaveFX</name>
-
+    <description>Aplicación creada con Maven y JavaFX</description>
+    <url>https://github.com/ISSG2004/ProyectoFinal-DI</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
@@ -134,6 +135,23 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <!--Plugin para site-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.8.2</version> <!-- Usa la versión más reciente -->
+                <configuration>
+                    <locales>es</locales>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <source>8</source>
+                </configuration>
             </plugin>
         </plugins>
         <resources>

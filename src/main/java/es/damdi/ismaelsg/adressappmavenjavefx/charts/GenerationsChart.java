@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The type Generations chart.
+ */
 public class GenerationsChart { private static PieChart pieChart;
 
     // Método para calcular la distribución de generaciones
@@ -53,7 +56,12 @@ public class GenerationsChart { private static PieChart pieChart;
         pieChart.setData(pieChartData);
     }
 
-    // Método para mostrar la ventana con el gráfico
+    /**
+     * Show chart window.
+     *
+     * @param persons the persons
+     */
+// Método para mostrar la ventana con el gráfico
     public static void showChartWindow(ObservableList<Person> persons) {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
