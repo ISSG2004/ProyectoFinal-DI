@@ -35,17 +35,14 @@ public class MarkDown extends Application {
         primaryStage.getIcons().add(new Image(getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/media/OIP.jpg").toExternalForm()));
         primaryStage.show();
     }
-
     private String loadMarkdown() {
-        URL resourceUrl = getClass().getResource("/es/damdi/ismaelsg/adressappmavenjavefx/help/markdown/README.md");
-        if (resourceUrl == null) {
-            System.err.println("⚠️ El archivo Markdown no se encontró en el classpath.");
-            return "Error: No se pudo encontrar el archivo Markdown.";
-        }
-        try {
-            Path path = Paths.get(resourceUrl.toURI());
-            return Files.readString(path); // Método más eficiente que `readAllBytes()`
-        } catch (IOException | URISyntaxException e) {
+        try (var inputStream = getClass().getResourceAsStream("/es/damdi/ismaelsg/adressappmavenjavefx/help/markdown/README.md")) {
+            if (inputStream == null) {
+                System.err.println("⚠️ El archivo Markdown no se encontró en el classpath.");
+                return "Error: No se pudo encontrar el archivo Markdown.";
+            }
+            return new String(inputStream.readAllBytes()); // Leer todo el contenido
+        } catch (IOException e) {
             System.err.println("❌ Error al cargar el archivo Markdown: " + e.getMessage());
             return "Error al cargar el archivo Markdown.";
         }
